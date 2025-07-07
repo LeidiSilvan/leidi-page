@@ -1,11 +1,13 @@
 ---
 // Datos estáticos del footer
+import { Github, Linkedin, Twitter, Mail } from 'lucide-astro';
+
 const currentYear = new Date().getFullYear();
 const socialLinks = [
-  { name: "GitHub", url: "https://github.com/leidi", icon: "github" },
-  { name: "LinkedIn", url: "https://linkedin.com/in/leidi", icon: "linkedin" },
-  { name: "Twitter", url: "https://twitter.com/leidi", icon: "twitter" },
-  { name: "Email", url: "mailto:hola@leidi.dev", icon: "email" }
+  { name: "GitHub", url: "https://github.com/leidi", component: Github },
+  { name: "LinkedIn", url: "https://linkedin.com/in/leidi", component: Linkedin },
+  { name: "Twitter", url: "https://twitter.com/leidi", component: Twitter },
+  { name: "Email", url: "mailto:hola@leidi.dev", component: Mail }
 ];
 ---
 
@@ -37,7 +39,7 @@ const socialLinks = [
             <div class="social-links">
               {socialLinks.map((link) => (
                 <a href={link.url} class="social-link" title={link.name} target="_blank" rel="noopener noreferrer">
-                  <span class="social-icon" data-icon={link.icon}></span>
+                  <link.component size={20} />
                 </a>
               ))}
             </div>
@@ -148,15 +150,6 @@ const socialLinks = [
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
   }
-  
-  .social-icon {
-    font-size: 1.25rem;
-  }
-  
-  .social-icon[data-icon="github"]::before { content: "🐙"; }
-  .social-icon[data-icon="linkedin"]::before { content: "💼"; }
-  .social-icon[data-icon="twitter"]::before { content: "🐦"; }
-  .social-icon[data-icon="email"]::before { content: "📧"; }
   
   .footer-bottom {
     display: flex;

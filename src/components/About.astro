@@ -1,0 +1,417 @@
+---
+import { User, MapPin, Calendar, Heart, Coffee, Code2, Target, Star } from 'lucide-astro';
+
+// Datos personales
+const aboutData = {
+  name: "Leidi",
+  role: "Desarrolladora Frontend",
+  location: "Ciudad, País",
+  experience: "3+ años",
+  description: "Soy una desarrolladora frontend apasionada por crear experiencias web increíbles. Me especializo en transformar diseños en aplicaciones funcionales y atractivas, siempre buscando la mejor experiencia para el usuario.",
+  longDescription: "Mi viaje en el desarrollo web comenzó hace varios años cuando descubrí la magia de convertir líneas de código en interfaces interactivas. Desde entonces, he trabajado en diversos proyectos, desde aplicaciones empresariales hasta sitios web personales, siempre enfocándome en escribir código limpio, accesible y performante.",
+  stats: [
+    { label: "Proyectos Completados", value: "25+", icon: Target },
+    { label: "Tecnologías Dominadas", value: "15+", icon: Code2 },
+    { label: "Años de Experiencia", value: "3+", icon: Calendar },
+    { label: "Clientes Satisfechos", value: "100%", icon: Star }
+  ],
+  interests: [
+    { name: "Diseño UI/UX", icon: Heart },
+    { name: "Café & Código", icon: Coffee },
+    { name: "Aprendizaje Continuo", icon: Code2 },
+    { name: "Colaboración", icon: User }
+  ]
+};
+---
+
+<section id="sobre-mi" class="about-section">
+  <div class="container">
+    <div class="about-content">
+      <!-- Sección principal -->
+      <div class="about-main">
+        <div class="about-text">
+          <div class="section-header">
+            <h2 class="section-title">Sobre mí</h2>
+            <div class="location-info">
+              <MapPin size={16} />
+              <span>{aboutData.location}</span>
+            </div>
+          </div>
+          
+          <div class="about-description">
+            <p class="intro-text">{aboutData.description}</p>
+            <p class="detailed-text">{aboutData.longDescription}</p>
+          </div>
+          
+          <div class="personal-stats">
+            {aboutData.stats.map((stat) => (
+              <div class="stat-item">
+                <div class="stat-icon">
+                  <stat.icon size={20} />
+                </div>
+                <div class="stat-content">
+                  <div class="stat-value">{stat.value}</div>
+                  <div class="stat-label">{stat.label}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        <div class="about-visual">
+          <div class="profile-card">
+            <div class="profile-image">
+              <div class="image-placeholder">
+                <User size={48} />
+              </div>
+            </div>
+            <div class="profile-info">
+              <h3 class="profile-name">{aboutData.name}</h3>
+              <p class="profile-role">{aboutData.role}</p>
+              <div class="profile-experience">
+                <Calendar size={16} />
+                <span>{aboutData.experience} de experiencia</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Elementos decorativos -->
+          <div class="floating-elements">
+            <div class="floating-element element-1">💻</div>
+            <div class="floating-element element-2">🎨</div>
+            <div class="floating-element element-3">⚡</div>
+            <div class="floating-element element-4">🚀</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Sección de intereses -->
+      <div class="interests-section">
+        <h3 class="interests-title">Lo que me apasiona</h3>
+        <div class="interests-grid">
+          {aboutData.interests.map((interest) => (
+            <div class="interest-item">
+              <div class="interest-icon">
+                <interest.icon size={24} />
+              </div>
+              <span class="interest-name">{interest.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-section {
+    padding: var(--space-3xl) 0;
+    background-color: var(--color-bg-secondary);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xl);
+  }
+  
+  .about-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: center;
+  }
+  
+  .section-header {
+    margin-bottom: var(--space-xl);
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-md);
+  }
+  
+  .location-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+  }
+  
+  .about-description {
+    margin-bottom: var(--space-xl);
+  }
+  
+  .intro-text {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-lg);
+  }
+  
+  .detailed-text {
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+  
+  .personal-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+  
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--color-bg-secondary);
+    border-radius: var(--border-radius-lg);
+    transition: transform var(--transition-fast);
+  }
+  
+  .stat-item:hover {
+    transform: translateY(-2px);
+  }
+  
+  .stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .stat-content {
+    flex: 1;
+  }
+  
+  .stat-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.2;
+  }
+  
+  .stat-label {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+  }
+  
+  .about-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .profile-card {
+    background: var(--color-bg-secondary);
+    border-radius: var(--border-radius-xl);
+    padding: var(--space-xl);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 2;
+    max-width: 300px;
+    width: 100%;
+  }
+  
+  .profile-image {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--space-lg);
+  }
+  
+  .image-placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .profile-info {
+    text-align: center;
+  }
+  
+  .profile-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-xs);
+  }
+  
+  .profile-role {
+    color: var(--color-primary);
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+  }
+  
+  .profile-experience {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+  }
+  
+  .floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+  }
+  
+  .floating-element {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.3;
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .element-1 {
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+  
+  .element-2 {
+    top: 20%;
+    right: 10%;
+    animation-delay: 1.5s;
+  }
+  
+  .element-3 {
+    bottom: 30%;
+    left: 15%;
+    animation-delay: 3s;
+  }
+  
+  .element-4 {
+    bottom: 15%;
+    right: 20%;
+    animation-delay: 4.5s;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(180deg);
+    }
+  }
+  
+  /* Sección de intereses */
+  .interests-section {
+    text-align: center;
+  }
+  
+  .interests-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-xl);
+  }
+  
+  .interests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-lg);
+  }
+  
+  .interest-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: var(--color-bg-secondary);
+    border-radius: var(--border-radius-lg);
+    transition: all var(--transition-fast);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .interest-item:hover {
+    background: var(--color-primary);
+    color: white;
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .interest-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    border-radius: var(--border-radius-md);
+    transition: transform var(--transition-fast);
+  }
+  
+  .interest-item:hover .interest-icon {
+    transform: scale(1.1);
+    background: white;
+    color: var(--color-primary);
+  }
+  
+  .interest-name {
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+  
+  .interest-item:hover .interest-name {
+    color: white;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .about-main {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .personal-stats {
+      grid-template-columns: 1fr;
+    }
+    
+    .interests-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .profile-card {
+      max-width: 100%;
+    }
+  }
+  
+  /* Tema oscuro */
+  @media (prefers-color-scheme: dark) {
+    .profile-card,
+    .stat-item,
+    .interest-item {
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+</style>

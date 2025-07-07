@@ -1,0 +1,475 @@
+---
+import { Mail, Phone, MapPin, Clock, Send, MessageCircle, Calendar, Globe } from 'lucide-astro';
+
+// Datos de contacto
+const contactData = {
+  title: "¡Trabajemos juntos!",
+  subtitle: "¿Tienes un proyecto en mente? Me encantaría escuchar tus ideas y ayudarte a hacerlas realidad.",
+  email: "hola@leidi.dev",
+  phone: "+1 (555) 123-4567",
+  location: "Ciudad de México, México",
+  timezone: "GMT-6",
+  availability: "Lun - Vie, 9:00 AM - 6:00 PM",
+  
+  contactMethods: [
+    {
+      type: "Email",
+      value: "hola@leidi.dev",
+      href: "mailto:hola@leidi.dev?subject=Colaboración - Portfolio",
+      icon: Mail,
+      description: "Escríbeme para proyectos y colaboraciones",
+      primary: true
+    },
+    {
+      type: "WhatsApp",
+      value: "+1 (555) 123-4567",
+      href: "https://wa.me/15551234567?text=Hola! Vi tu portfolio y me gustaría hablar sobre un proyecto",
+      icon: MessageCircle,
+      description: "Respuesta rápida por WhatsApp",
+      primary: false
+    },
+    {
+      type: "Teléfono",
+      value: "+1 (555) 123-4567",
+      href: "tel:+15551234567",
+      icon: Phone,
+      description: "Llamada directa en horario laboral",
+      primary: false
+    },
+    {
+      type: "Calendly",
+      value: "Agendar reunión",
+      href: "https://calendly.com/leidi/30min",
+      icon: Calendar,
+      description: "Agenda una reunión de 30 minutos",
+      primary: false
+    }
+  ],
+  
+  quickInfo: [
+    {
+      icon: MapPin,
+      label: "Ubicación",
+      value: "Ciudad, País",
+      detail: "Disponible para trabajo remoto"
+    },
+    {
+      icon: Clock,
+      label: "Horario",
+      value: "9:00 AM - 6:00 PM",
+      detail: "Lunes a Viernes (GMT-5)"
+    },
+    {
+      icon: Globe,
+      label: "Idiomas",
+      value: "Español, Inglés",
+      detail: "Comunicación fluida"
+    }
+  ]
+};
+---
+
+<section id="contacto" class="contact-section">
+  <div class="container">
+    <div class="contact-content">
+      <!-- Header -->
+      <div class="section-header">
+        <h2 class="section-title">{contactData.title}</h2>
+        <p class="section-subtitle">{contactData.subtitle}</p>
+      </div>
+      
+      <!-- Contenido principal -->
+      <div class="contact-main">
+        <!-- Métodos de contacto -->
+        <div class="contact-methods">
+          <h3 class="methods-title">Formas de contactarme</h3>
+          <div class="methods-grid">
+            {contactData.contactMethods.map((method) => (
+              <a 
+                href={method.href} 
+                class={`contact-card ${method.primary ? 'primary' : ''}`}
+                target={method.href.startsWith('http') ? '_blank' : '_self'}
+                rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              >
+                <div class="contact-icon">
+                  <method.icon size={24} />
+                </div>
+                <div class="contact-info">
+                  <h4 class="contact-type">{method.type}</h4>
+                  <p class="contact-value">{method.value}</p>
+                  <p class="contact-description">{method.description}</p>
+                </div>
+                <div class="contact-arrow">
+                  <Send size={16} />
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+        
+        <!-- Información rápida -->
+        <div class="quick-info">
+          <h3 class="info-title">Información adicional</h3>
+          <div class="info-cards">
+            {contactData.quickInfo.map((info) => (
+              <div class="info-card">
+                <div class="info-icon">
+                  <info.icon size={20} />
+                </div>
+                <div class="info-content">
+                  <h4 class="info-label">{info.label}</h4>
+                  <p class="info-value">{info.value}</p>
+                  <p class="info-detail">{info.detail}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      
+      <!-- Call to action final -->
+      <div class="contact-cta">
+        <div class="cta-content">
+          <h3 class="cta-title">¿Listo para empezar?</h3>
+          <p class="cta-text">No dudes en contactarme. Respondo en menos de 24 horas.</p>
+          <div class="cta-buttons">
+            <a href="mailto:hola@leidi.dev?subject=Nuevo Proyecto - Portfolio" class="btn btn-primary">
+              <Mail size={20} />
+              Enviar Email
+            </a>
+            <a href="https://wa.me/15551234567" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+              <MessageCircle size={20} />
+              WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-section {
+    padding: var(--space-3xl) 0;
+    background: var(--color-bg-primary);
+    position: relative;
+  }
+  
+  .contact-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xl);
+  }
+  
+  .section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-md);
+  }
+  
+  .section-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+  
+  .contact-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+  
+  .methods-title,
+  .info-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-lg);
+  }
+  
+  .methods-grid {
+    display: grid;
+    gap: var(--space-lg);
+  }
+  
+  .contact-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    padding: var(--space-xl);
+    background: var(--color-bg-primary);
+    border-radius: var(--border-radius-xl);
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+  }
+  
+  .contact-card.primary {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    transform: scale(1.02);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .contact-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  .contact-card:hover::before {
+    opacity: 0.1;
+  }
+  
+  .contact-card.primary:hover {
+    transform: translateY(-4px) scale(1.02);
+  }
+  
+  .contact-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background: var(--color-bg-tertiary);
+    border-radius: var(--border-radius-lg);
+    color: var(--color-primary);
+    transition: all var(--transition-fast);
+    position: relative;
+    z-index: 2;
+  }
+  
+  .contact-card.primary .contact-icon {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+  
+  .contact-info {
+    flex: 1;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .contact-type {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-xs);
+  }
+  
+  .contact-card.primary .contact-type {
+    color: white;
+  }
+  
+  .contact-value {
+    font-weight: 500;
+    color: var(--color-primary);
+    margin-bottom: var(--space-xs);
+  }
+  
+  .contact-card.primary .contact-value {
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .contact-description {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+  }
+  
+  .contact-card.primary .contact-description {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .contact-arrow {
+    color: var(--color-text-light);
+    transition: transform var(--transition-fast);
+    position: relative;
+    z-index: 2;
+  }
+  
+  .contact-card:hover .contact-arrow {
+    transform: translateX(4px);
+  }
+  
+  .contact-card.primary .contact-arrow {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  /* Quick Info */
+  .info-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  
+  .info-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: var(--color-bg-primary);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .info-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--color-bg-tertiary);
+    border-radius: var(--border-radius-md);
+    color: var(--color-primary);
+  }
+  
+  .info-content {
+    flex: 1;
+  }
+  
+  .info-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 2px;
+  }
+  
+  .info-value {
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    margin-bottom: 2px;
+  }
+  
+  .info-detail {
+    font-size: 0.75rem;
+    color: var(--color-text-light);
+  }
+  
+  /* CTA Section */
+  .contact-cta {
+    text-align: center;
+    padding: var(--space-3xl);
+    background: var(--color-bg-primary);
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .cta-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-sm);
+  }
+  
+  .cta-text {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-xl);
+  }
+  
+  .cta-buttons {
+    display: flex;
+    gap: var(--space-lg);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-xl);
+    border-radius: var(--border-radius-lg);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+  }
+  
+  .btn-primary {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    color: white;
+    box-shadow: var(--shadow-md);
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+  }
+  
+  .btn-secondary:hover {
+    background: var(--color-primary);
+    color: white;
+    transform: translateY(-2px);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .contact-main {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+    
+    .contact-card {
+      flex-direction: column;
+      text-align: center;
+      gap: var(--space-md);
+    }
+    
+    .contact-arrow {
+      display: none;
+    }
+    
+    .cta-buttons {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    .contact-cta {
+      padding: var(--space-xl);
+    }
+  }
+  
+  /* Tema oscuro */
+  @media (prefers-color-scheme: dark) {
+    .contact-card,
+    .info-card,
+    .contact-cta {
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+</style>

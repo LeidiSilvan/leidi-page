@@ -1,0 +1,266 @@
+---
+import { ExternalLink, Github, Code2, Palette, Database, Globe } from 'lucide-astro';
+
+// Datos estáticos de proyectos
+const projects = [
+  {
+    id: 1,
+    title: "E-commerce Moderno",
+    description: "Plataforma de comercio electrónico con carrito de compras, pagos integrados y panel de administración.",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
+    technologies: [
+      { name: "React", icon: Code2 },
+      { name: "TypeScript", icon: Code2 },
+      { name: "Node.js", icon: Database },
+      { name: "Stripe", icon: Globe }
+    ],
+    liveUrl: "https://proyecto1.com",
+    githubUrl: "https://github.com/leidi/proyecto1"
+  },
+  {
+    id: 2,
+    title: "Dashboard Analytics",
+    description: "Dashboard interactivo para visualización de datos con gráficos en tiempo real y reportes personalizados.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+    technologies: [
+      { name: "Vue.js", icon: Code2 },
+      { name: "D3.js", icon: Palette },
+      { name: "Firebase", icon: Database },
+      { name: "Sass", icon: Palette }
+    ],
+    liveUrl: "https://proyecto2.com",
+    githubUrl: "https://github.com/leidi/proyecto2"
+  },
+  {
+    id: 3,
+    title: "App de Gestión",
+    description: "Aplicación web para gestión de tareas y proyectos con colaboración en tiempo real y notificaciones.",
+    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
+    technologies: [
+      { name: "Next.js", icon: Code2 },
+      { name: "Tailwind", icon: Palette },
+      { name: "PostgreSQL", icon: Database },
+      { name: "WebSocket", icon: Globe }
+    ],
+    liveUrl: "https://proyecto3.com",
+    githubUrl: "https://github.com/leidi/proyecto3"
+  }
+];
+---
+
+<section id="proyectos" class="projects-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Mis Proyectos</h2>
+      <p class="section-subtitle">
+        Una selección de proyectos que demuestran mis habilidades y experiencia en desarrollo frontend
+      </p>
+    </div>
+    
+    <div class="projects-grid">
+      {projects.map((project) => (
+        <article class="project-card">
+          <div class="project-image">
+            <img src={project.image} alt={project.title} loading="lazy" />
+            <div class="project-overlay">
+              <div class="project-actions">
+                <a href={project.liveUrl} class="project-link" title="Ver proyecto" target="_blank" rel="noopener noreferrer">
+                  <ExternalLink size={20} />
+                </a>
+                <a href={project.githubUrl} class="project-link" title="Ver código" target="_blank" rel="noopener noreferrer">
+                  <Github size={20} />
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="project-content">
+            <h3 class="project-title">{project.title}</h3>
+            <p class="project-description">{project.description}</p>
+            
+            <div class="project-technologies">
+              {project.technologies.map((tech) => (
+                <span class="tech-chip">
+                  <tech.icon size={16} />
+                  {tech.name}
+                </span>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects-section {
+    padding: var(--space-3xl) 0;
+    background-color: var(--color-bg-primary);
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-3xl);
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-md);
+  }
+  
+  .section-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-xl);
+  }
+  
+  .project-card {
+    background: var(--color-bg-primary);
+    border-radius: var(--border-radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  .project-image {
+    position: relative;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+  }
+  
+  .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-normal);
+  }
+  
+  .project-card:hover .project-image img {
+    transform: scale(1.05);
+  }
+  
+  .project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+  }
+  
+  .project-card:hover .project-overlay {
+    opacity: 1;
+  }
+  
+  .project-actions {
+    display: flex;
+    gap: var(--space-md);
+  }
+  
+  .project-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: white;
+    color: var(--color-text-primary);
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .project-link:hover {
+    background: var(--color-primary);
+    color: white;
+    transform: scale(1.1);
+  }
+  
+  .project-content {
+    padding: var(--space-xl);
+  }
+  
+  .project-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-sm);
+  }
+  
+  .project-description {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-lg);
+  }
+  
+  .project-technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+  
+  .tech-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm);
+    background: var(--color-bg-tertiary);
+    color: var(--color-text-secondary);
+    border-radius: var(--border-radius-md);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all var(--transition-fast);
+  }
+  
+  .tech-chip:hover {
+    background: var(--color-primary);
+    color: white;
+    transform: translateY(-1px);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .project-content {
+      padding: var(--space-lg);
+    }
+  }
+  
+  /* Tema oscuro */
+  @media (prefers-color-scheme: dark) {
+    .project-card {
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+</style>

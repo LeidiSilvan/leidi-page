@@ -2,6 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Projects from '../components/Projects.astro';
+import Skills from '../components/Skills.astro';
+import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 ---
 
@@ -9,35 +13,10 @@ import Footer from '../components/Footer.astro';
   <Header />
   <main>
     <Hero />
-    
-    <!-- Aquí agregaremos más secciones -->
-    <section id="sobre-mi" class="section">
-      <div class="container">
-        <h2 class="section-title text-center">Sobre mí</h2>
-        <p class="text-center">Esta sección se desarrollará próximamente...</p>
-      </div>
-    </section>
-    
-    <section id="proyectos" class="section">
-      <div class="container">
-        <h2 class="section-title text-center">Proyectos</h2>
-        <p class="text-center">Esta sección se desarrollará próximamente...</p>
-      </div>
-    </section>
-    
-    <section id="skills" class="section">
-      <div class="container">
-        <h2 class="section-title text-center">Skills</h2>
-        <p class="text-center">Esta sección se desarrollará próximamente...</p>
-      </div>
-    </section>
-    
-    <section id="contacto" class="section">
-      <div class="container">
-        <h2 class="section-title text-center">Contacto</h2>
-        <p class="text-center">Esta sección se desarrollará próximamente...</p>
-      </div>
-    </section>
+    <About />
+    <Projects />
+    <Skills />
+    <Contact />
   </main>
   <Footer />
 </Layout>
