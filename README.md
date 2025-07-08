@@ -49,7 +49,7 @@ Un portfolio personal desarrollado con **Astro**, diseñado para ser completamen
 ```
 leidi-page/
 ├── public/                    # Assets estáticos
-│   ├── favicon.svg           # Icono del sitio
+│   ├── favicon.ico           # Icono del sitio
 │   └── og-image.jpg          # Imagen para Open Graph
 ├── src/
 │   ├── components/           # Componentes reutilizables
